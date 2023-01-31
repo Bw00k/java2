@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Util/calender.html</title>
+  </head>
+  <body>
+    <h3>달력만들기.</h3>
+    <div id="show">
+      <!--     <table border="1">
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+    <script>
+      //년도
+      let month = 3;
+      makeCalender(month);
+
+      function getLastDate(month) {
+        //마지막 날짜를 반환하는 함수.
+        let lastDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let lastDay = lastDate[month];
+        return lastDay;
+      }
+      function getFirstDay(month) {
+        // 1일의 요일정보를 반환하는 함수.
+        if (month == 1) {
+          return 0;
+        } else if (month == 2) {
+          return 3;
+        }
+      }
+
+      function makeCalender(month) {
+        let table = document.createElement("table");
+        table.setAttribute("border", "1");
+        let tbody = document.createElement("tbody");
+        table.append(tbody);
+        let tr = document.createElement("tr");
+
+        // 1일의 위치가 일요일.
+        for (let i = 0; i < 3; i++) {
+          let td = document.createElement("td");
+          tr.append(td);
+        }
+        for (let i = 1; i <= getLastDate(month); i++) {
+          let td = document.createElement("td");
+          td.innerText = i;
+          tr.append(td);
+
+          if (tr.children.length % 7 == 0) {
+            tbody.append(tr);
+            tr = document.createElement("tr");
+          }
+        }
+
+        table.append(tr);
+        // table. =>
+        show.append(table);
+      }
+    </script>
+  </body>
+</html>
