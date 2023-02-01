@@ -2,69 +2,79 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <title>info/empList.html</title>
+  <meta charset="UTF-8">
+  <title>info/empList</title>
   <style>
     tr.delError {
-      background-color: gray
+      background-color: gray;
+    }
+
+    select.right {
+      float: right;
+    }
+
+    a {
+      margin-right: 4px;
+      margin-left: 4px;
     }
   </style>
 </head>
 
 <body>
-  <h3>사원등록</h3>
-  <form name="empForm" action="../myinfo" method="post">
+  <h3>사원등록페이지</h3>
+  <form name="empForm" method="post" action="../myinfo">
     <table border="1">
       <tr>
-        <th><label>사원번호: </label></th>
-        <td><input type="text" name="emp_id" /></td>
+        <th><label>사원번호:</label></th>
+        <td><input type="text" name="emp_id"><br></td>
       </tr>
       <tr>
-        <th><label>이름: </label></th>
-        <td><input type="text" name="last_name" /></td>
+        <th><label>이름:</label></th>
+        <td><input type="text" name="last_name"><br></td>
       </tr>
       <tr>
-        <th><label>이메일: </label></th>
-        <td><input type="text" name="email" /></td>
+        <th><label>이메일:</label></th>
+        <td><input type="text" name="email"><br></td>
       </tr>
       <tr>
-        <th><label>입사일자: </label></th>
-        <td><input type="text" name="hire_date" /></td>
+        <th><label>입사일자:</label></th>
+        <td><input type="text" name="hire_date"><br></td>
       </tr>
       <tr>
-        <th><label>직무: </label></th>
-        <td><input type="text" name="job_id" /></td>
+        <th><label>직무:</label></th>
+        <td><input type="text" name="job_id"><br></td>
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <input type="submit" value="저장" />
-          <input type="reset" value="초기화" />
-          <input id="delSelectedBtn" type="button" value="선택삭제" />
+          <input type="submit" value="저장">
+          <input type="reset" value="초기화">
+          <input id="delSelectedBtn" type="button" value="선택삭제">
         </td>
       </tr>
     </table>
   </form>
 
-  <h3>사원리스트</h3>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>사원번호</th>
-        <th>이름</th>
-        <th>이메일</th>
-        <th>입사일자</th>
-        <th>직무(job_id)</th>
-        <th>삭제</th>
-        <th>수정</th>
-        <th>
-          <input type="checkbox" />
-        </th>
-      </tr>
-    </thead>
-    <tbody id="list"></tbody>
-  </table>
+  <div id="paging"></div>
 
-  <script src="../js/empList.js"></script>
+  <h3>사원리스트</h>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>사원번호</th>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>입사일자</th>
+          <th>직무(job_id)</th>
+          <th>삭제</th>
+          <th>수정</th>
+          <th><input type="checkbox"></th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+
+    <script src="../js/empList.js"></script>
+
 </body>
 
 </html>

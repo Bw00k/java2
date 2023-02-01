@@ -3,15 +3,20 @@
  */
 
 // 목록출력하기.
-fetch("../empListJson")
+let totalAry = [] // 전체목록 담아놓을 용도.
   .then((resolve) => resolve.json())
   .then((result) => {
     console.log(result);
+    localStorage.setItem("total", result.length);
+    totalAry = result;
+
     // 배열관련메소드: forEach, map, filter, reduce 메소드.
     result.forEach(function (item) {
       let tr = makeTr(item); // tr생성 후 반환.
       list.append(tr);
     }); // result배열에 등록된 값의 갯수만큼  function() 실행.
+    showPages(2);
+    employeeList(2);
   })
   .catch((reject) => {
     console.log(reject);
@@ -286,5 +291,36 @@ function processAfterFetch(ary = []) {
         }
       }
     }
+  });
+}
+
+//페이지 목록()
+function showPages(curPage = 15) {
+  let endPage = Math.ceil(curPage / 10) * 10; //20
+  let startPage = endPage - 9; //11
+  let realEnd = Math.ceil(255 / 10);
+  endPage = endPage > realEnd ? realEnd : endPage;
+
+  let paging = document.getElementById("paging");
+
+  for (let i = startPage; i <= endPage; i++) {
+    let aTag = document.createElement("a");
+    aTag.href = "index.html";
+    aTag.innerText = i;
+    paging.append(aTag);
+  }
+}
+
+//사원 목록()
+function employeeList(curPage = 5) {
+  let end = curPage * 10;
+  let start = endPage - 9; //11
+  totalAry.filter((emp, idx) => {
+    return idx + 1 > start && idx < end;
+  });
+  let lst = document.getElementById("list");
+  newList.forEach((emp) => {
+    let tr = makeTr(emp);
+    lst.append(tr);
   });
 }
