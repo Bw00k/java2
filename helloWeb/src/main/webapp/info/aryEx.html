@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>info/aryEx.html</title>
+</head>
+
+<body>
+    <div id="show">
+        <table border="1">
+            <thead id="head">
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+
+    </div>
+    <script>
+        console.log("aaa");
+        const fruits = [
+            { name: "apple", price: 100, like: 3.5 },
+            { name: "banana", price: 200, like: 4.5 },
+            { name: "cherry", price: 300, like: 5 },
+        ];
+        const titles = ['과일', '가격', '선호도']
+        titles.forEach(title => {
+            let th = document.createElement('th');
+            th.innerHTML = title;
+            head.append(th);
+        })
+        fruits.forEach((fruit, idx, ary) => {
+            if (fruit.like > 4) {
+                let tr = document.createElement("tr");
+                for (let prop in fruit) {
+                    let td = document.createElement("td");
+                    td.innerText = fruit[prop];
+                    tr.append(td);
+                }
+                list.append(tr);
+            }
+        });
+
+        //선호도 4 이상 요소를 over4에 저장.
+        /* let over4 = [];   //forEach로 담기
+        fruits.forEach((fruit) => {
+            if (fruit.like > 4) {
+                over4.push(fruit);
+            }
+        }); */
+
+        let over4 = [];
+        over4 = fruits.filter(fruit => fruit.like > 4);
+        console.log(over4);
+
+
+        document.querySelectorAll('#list tr').forEach((tr) => {
+            tr.firstChild.style.backgroundColor = "yellow";
+        });
+        //map에 새로운 타입으로 담음
+        let nFruits = fruits.map((fruit, idx) => {
+            let nFruit = {}
+            nFruit.ord = idx + 1;
+            nFruit.fname = fruit.name;
+            nFruit.price = fruit.price;
+            return nFruit;
+        })
+        console.log(nFruits);
+
+
+
+        // fruits 의 배열에 있는 가격의 합:
+        let priceSum = 0;
+        fruits.forEach((fruit) => {
+            priceSum += fruit.price;
+        })
+        console.log("가격의 합:" + priceSum);
+        console.clear();
+
+        let result = fruits.reduce((accum, item, idx, ary) => {
+            console.log(accum, item, idx, ary);
+            return accum += item.like //반환값이 다음순번의 초기(accum)
+        }, 0);
+        console.log(result / fruits.length);
+
+        let result1 = fruits.reduce((acc, item, idx) => {
+
+            let tr = document.createElement('tr');
+            for (let prop in item) {
+                let td = document.createElement('td');
+                td.innerText = item[prop];
+                tr.append(td);
+            }
+            acc.append(tr);
+            return acc;
+        }, document.querySelector('tbody'));
+    </script>
+</body>
+
+</html>

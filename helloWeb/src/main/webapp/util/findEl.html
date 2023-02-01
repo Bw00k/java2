@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        div.outer {
+            background-color: 'yellow';
+            width: 505px;
+            height: 300px;
+        }
+
+        div.inner {
+            display: inline-block;
+            background-color: quaq;
+            height: 30px;
+            width: 120px;
+            margin: 2px;
+            border: 1px solid black;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="list" class="outer"></div>
+    <input type="text" id="search" />
+    <button id="btn">제거하기</button>
+    <script>
+        let words = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore alias deleniti consectetur ipsum numquam! Earum quia perferendis exercitationem est, necessitatibus consequatur ex porro? Ipsa debitis dicta aliquam quod in nobis!"
+        let items = words.split(" ");
+        items.forEach((word) => {
+            let div1 = document.createElement('div');
+            div1.setAttribute('class', 'inner');
+            div1.innerText = word;
+            list.append(div1);
+        })
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('div[class="inner"]')
+                .forEach((item) => {
+                    if (item.innerText == search.value) {
+                        item.remove();
+                    }
+
+                })
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>
